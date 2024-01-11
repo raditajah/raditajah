@@ -1,0 +1,113 @@
+---
+title: "Melihat Hubungan Pendapatan Per Kapita Masyrakat Indonesia dan Pembelian Sepeda Motor pada Tahun 2019-2021"
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "Radithya Nurakhdan"
+date: 2024-01-11
+number-sections: true
+format:
+  html: default
+  docx: default
+---
+![](poltekapp.jpg)
+
+## Pendahuluan
+
+### Latar belakang
+
+Pertumbuhan ekonomi suatu negara atau daerah tidak hanya dapat diukur melalui indikator makroekonomi seperti Produk Domestik Bruto (PDB) secara keseluruhan, tetapi juga dapat dilihat melalui perubahan dalam perilaku konsumen. Kesejahteraan ekonomi masyarakat tercermin dalam pola konsumsi dan keputusan pembelian yang diambil oleh individu. Dalam konteks Indonesia, salah satu indikator konsumsi yang signifikan adalah kepemilikan sepeda motor.
+
+Sepeda motor telah menjadi bagian integral dari kehidupan sehari-hari masyarakat Indonesia, memberikan kontribusi besar terhadap mobilitas dan konektivitas. Peningkatan jumlah sepeda motor yang dimiliki oleh masyarakat dapat diartikan sebagai cerminan dari perubahan gaya hidup, kebutuhan mobilitas, dan kemampuan finansial individu. Oleh karena itu, memahami hubungan antara kesejahteraan ekonomi masyarakat, diwakili oleh PDB per kapita, dengan tingkat pembelian sepeda motor menjadi esensial.
+
+Melihat tren pertumbuhan ekonomi yang diiringi dengan peningkatan kepemilikan sepeda motor, dapat memberikan wawasan tentang dampak perekonomian terhadap keputusan konsumen dalam memenuhi kebutuhan transportasi pribadi. Kajian ini juga relevan untuk memahami dinamika pasar sepeda motor, sejauh mana pasar tersebut merespons perubahan ekonomi, dan bagaimana kebijakan pemerintah dapat merangsang pertumbuhan sektor otomotif.
+
+Dengan menggali hubungan antara PDB per kapita dan pembelian sepeda motor, penelitian ini akan memberikan sumbangan pengetahuan yang berharga bagi pengambil kebijakan, peneliti, dan pelaku industri. Analisis ini diharapkan dapat memberikan landasan strategis untuk pengembangan kebijakan ekonomi dan industri otomotif yang lebih adaptif dan berkelanjutan di Indonesia.
+
+### Ruang lingkup
+Penelitian ini akan difokuskan pada analisis hubungan antara Produk Domestik Bruto (PDB) per kapita masyarakat dan pembelian sepeda motor di konteks Indonesia. Ruang lingkup penelitian mencakup beberapa aspek penting:
+
+Wilayah Geografis:
+
+Penelitian akan memusatkan perhatian pada kondisi ekonomi dan pasar sepeda motor di Indonesia. karena ingin melihat bagaimana perilaku masyrakat di indonesia
+
+Rentang Waktu:
+
+Rentang waktu penelitian akan mencakup periode yang cukup untuk mengidentifikasi tren jangka panjang. Data yang relevan akan dikumpulkan dan dianalisis untuk menilai perubahan seiring waktu, dengan fokus pada tahun-tahun terkait dengan fluktuasi signifikan.
+
+### Rumusan masalah
+
+1. Apakah adanya pengaruh Jumlah pendapatan per kapita Penduduk terhadap Angka Pembelian sepeda motor?
+
+### Tujuan dan manfaat penelitian
+
+bertujuan untuk menganalisis korelasi antara Produk Domestik Bruto (PDB) suatu daerah atau negara dengan tingkat pembelian sepeda motor oleh masyarakat. Dengan meneliti faktor-faktor ekonomi dan sosial yang mempengaruhi keputusan pembelian, seperti pendapatan per kapita dan struktur demografi, penelitian ini bertujuan memberikan pemahaman yang lebih baik tentang hubungan antara aspek ekonomi dan perilaku konsumen dalam konteks industri sepeda motor. Manfaatnya mencakup kontribusi terhadap pengembangan kebijakan ekonomi dan strategi pemasaran industri sepeda motor, memberikan wawasan bagi pembuat kebijakan, pengusaha, dan peneliti ilmiah, serta potensi dampak sosial dan ekonomi yang positif. Selain itu, penelitian ini diharapkan dapat menjadi dasar untuk penelitian lanjutan dalam bidang ini
+
+## Studi pustaka
+https://databoks.katadata.co.id/datapublish/2023/02/06/pendapatan-penduduk-indonesia-tumbuh-1396-menjadi-rp71-juta-per-tahun-pada-2022
+
+https://dataindonesia.id/otomotif-transportasi/detail/data-penjualan-sepeda-motor-di-indonesia-secara-tahunan-20132023
+
+## Metode penelitian
+
+### Data
+
+| tahun       | Pendapatan Per kapita           | Penjualan motor|
+|--------     |----------                       |-----------|
+|  2019       | 59065348                        | 6,487,460 |
+|  2020       | 56000000                        | 3,660,616 |
+|  2021       | 62300000                        | 5,057,516 |
+: tabel pdb dan pembelian motor
+
+penelitian ini menggunakan data PDB dari Databoks dan dataindonesia
+```{r}
+library("readxl")
+dat<-read_excel("data beli motor.xlsx")
+head(dat)
+```
+
+```{r}
+library("ggplot2")
+library("dplyr")
+ggplot(data=dat,aes(x=x,y=y))+
+  geom_point(color="black",size=2)+
+  labs(title="Hubungan PDB per kapita dengan pembelian motor",
+       x="Penjualan Motor",
+       y="PDB Per kapita",
+       caption="databoks.katadata.co.id")+
+  theme_classic()
+```
+
+### Metode analisis
+Metode yang dipilih adalah regresi univariat atau Ordinary Least Square (OLS) dengan 1 variabel independen. Penelitian ini merbaksud mencari hubungan Pendapatan Per kapita masyrakat Indonesia  dengan nilai pembelian sepeda motor. Spesifikasi yang dilakukan adalah:
+
+
+$$
+y_{t}=\beta_0 + \beta_1 x_t+\mu_t
+$$ di mana $y_t$ adalah pendaptan per kapita dan $x_t$ adalah pembelian sepeda motor.
+
+## Pembahasan
+
+### Pembahasan masalah
+
+Pada bagian ini dapat ditampilkan data dan visualisasi data yang telah dikumpulkan.
+
+### Analisis masalah
+
+Hasil regresinya adalah
+```{r}
+library("readxl")
+dat<-read_excel("data beli motor.xlsx")
+head(dat)
+```
+
+```{r}
+reg1<-lm(y~x,data=dat)
+summary(reg1)
+```
+## Kesimpulan
+
+Dari hasil analisis, terlihat bahwa model regresi yang diterapkan tidak secara signifikan menjelaskan hubungan antara variabel independen dan dependen pada data pembelian motor. Tingginya nilai p pada intercept dan koefisien x, bersama dengan nilai R-squared yang rendah, menunjukkan adanya ketidaksesuaian model dengan data atau kebutuhan untuk melakukan penyesuaian guna meningkatkan kualitasnya. Oleh karena itu, disarankan untuk melakukan evaluasi ulang terhadap model atau menambahkan variabel lain guna meningkatkan kemampuan model dalam menjelaskan variasi dalam data.
+
+## Referensi
+Kusnandar, V. B. (2023). Nilai dan Pertumbuhan PDB per Kapita Penduduk Indonesia (2013-2022). Databoks. https://databoks.katadata.co.id/datapublish/2023/02/06/pendapatan-penduduk-indonesia-tumbuh-1396-menjadi-rp71-juta-per-tahun-pada-2022
+
+Mustajab, R. (2024). Data Penjualan Sepeda Motor di Indonesia Secara Tahunan (2013-2023). Databoks. https://dataindonesia.id/otomotif-transportasi/detail/data-penjualan-sepeda-motor-di-indonesia-secara-tahunan-20132023
